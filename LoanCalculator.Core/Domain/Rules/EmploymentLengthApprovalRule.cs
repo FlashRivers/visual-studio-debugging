@@ -6,22 +6,19 @@ using System.Text;
 
 namespace LoanCalculator.Core.Domain
 {
-    public class IncomeApprovalRule : ILoanQualificationRule
+    public class EmploymentLengthApprovalRule : ILoanQualificationRule
     {
-        public const String RULE_NAME = "Stated Income";
+        public const String RULE_NAME = "Length of Employment";
 
         public string RuleName { get => RULE_NAME; }
 
         public bool CheckLoanApprovalRule(LoanApplication application)
         {
-            if (application.AnnualIncome <= application.LoanAmount)
+            if (application.YearsEmployed <= 2)
             {
-                return (application.AnnualIncome >= application.LoanAmount / 2);
+                return false;
             }
-
             return true;
         }
-
-
     }
 }
